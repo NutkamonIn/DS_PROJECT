@@ -30,6 +30,10 @@ build/
 *.log
 logs/
 
+# Agent specific
+.agent/
+.gemini/
+
 # Model weights (Large files)
 *.safetensors
 *.bin
