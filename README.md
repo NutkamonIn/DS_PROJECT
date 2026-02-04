@@ -1,127 +1,129 @@
-# Thai News Classification: Deep Learning vs Machine Learning
+# การจำแนกหมวดหมู่ข่าวภาษาไทย: การเปรียบเทียบ Deep Learning และ Machine Learning
 
-A comprehensive Full-Stack AI Application designed to compare and evaluate multiple Natural Language Processing (NLP) models for Thai news classification. This project is developed as part of the Unified MLDS Deployment Assignment.
-
-## System Architecture
-
-- **Frontend:** Next.js (React), Tailwind CSS, Recharts
-- **Backend:** FastAPI (Python), PyTorch, Scikit-learn
-- **Models:** 
-  - **WangchanBERTa:** Fine-tuned Thai Transformer model.
-  - **XLM-RoBERTa:** Multilingual Transformer model.
-  - **Logistic Regression:** TF-IDF based baseline model.
-  - **Random Forest:** Ensemble learning baseline model.
+โปรเจคนี้เป็นแอปพลิเคชัน Full-Stack AI สำหรับการเปรียบเทียบและประเมินประสิทธิภาพของโมเดลการประมวลผลภาษาธรรมชาติ (NLP) หลายรูปแบบในการจำแนกหมวดหมู่ข่าวภาษาไทย พัฒนาขึ้นเพื่อเป็นส่วนหนึ่งของงานมอบหมาย Unified MLDS Deployment
 
 ---
 
-## 1. Installation & Setup
+## 1. โครงสร้างระบบ (System Architecture)
 
-### Backend Setup
-Open a terminal and run the following commands:
+- **Frontend:** Next.js 15+, Tailwind CSS, Recharts (สำหรับการแสดงผลกราฟ)
+- **Backend:** FastAPI (Python 3.9+), PyTorch, Scikit-learn
+- **โมเดลที่ใช้:** 
+  - **Deep Learning:** WangchanBERTa, XLM-RoBERTa
+  - **Machine Learning (Baseline):** Logistic Regression, Random Forest
 
-```bash
-cd backend
-python3 -m venv venv
-# For macOS/Linux:
-source venv/bin/activate
-# For Windows:
-# venv\Scripts\activate
+---
 
-pip install -r requirements.txt
+## 2. การติดตั้งและตั้งค่า (Installation & Setup)
+
+### การตั้งค่า Backend
+1. เข้าไปที่โฟลเดอร์ backend: `cd backend`
+2. สร้างและใช้งาน Virtual Environment:
+   - macOS/Linux: `python3 -m venv venv && source venv/bin/activate`
+   - Windows: `python3 -m venv venv && venv\Scripts\activate`
+3. ติดตั้ง Library ที่จำเป็น: `pip install -r requirements.txt`
+
+### การตั้งค่า Frontend
+1. เข้าไปที่โฟลเดอร์ frontend: `cd frontend`
+2. ติดตั้ง Dependencies: `npm install`
+
+---
+
+## 3. วิธีการใช้งาน: สคริปต์ต่างๆ (Backend)
+
+สคริปต์ทั้งหมดต้องรันจากโฟลเดอร์ `backend` และควรเปิดใช้งาน Virtual Environment ก่อนรัน
+
+### การเทรนโมเดล (Training)
+- **เทรนโมเดล Machine Learning:** `python3 scripts/train_ml_models.py`
+  (สร้างโมเดล Logistic Regression และ Random Forest โดยใช้ TF-IDF)
+- **เทรนโมเดล WangchanBERTa:** `python3 scripts/train_wangchan.py`
+- **เทรนโมเดล XLM-RoBERTa:** `python3 scripts/train_xlmr.py`
+
+### การวัดผลและวิเคราะห์ (Evaluation)
+- **รัน Benchmark ทั้งหมด:** `python3 scripts/benchmark_all.py`
+  (ประเมินผลโมเดลทั้ง 4 ตัวบนชุดข้อมูลทดสอบ, สร้างไฟล์ `benchmark_metrics.json` และรูปภาพ Confusion Matrix)
+- **รันการวิเคราะห์ข้อผิดพลาด:** `python3 scripts/error_analysis.py`
+  (ดึงเคสที่โมเดลทายผิดออกมาไว้ในไฟล์ `error_analysis_report.csv` เพื่อนำไปเขียนรายงาน)
+
+---
+
+## 4. คู่มือการวิเคราะห์ข้อผิดพลาด (Error Analysis Guide)
+
+สำหรับการจัดทำรายงานในขั้นตอนที่ 5 ให้ดำเนินการดังนี้:
+
+1. รันสคริปต์: `python3 scripts/error_analysis.py`
+2. เปิดไฟล์ `error_analysis_report.csv` ด้วย Excel หรือ Google Sheets
+3. เลือกตัวอย่างที่โมเดลทายผิดมา 5-10 ตัวอย่าง และระบุประเภทข้อผิดพลาดในคอลัมน์ `error_category` ดังนี้:
+   - **Typo / Noise:** ข้อความมีคำผิดหรือสัญลักษณ์ที่ไม่มีความหมายเยอะเกินไป
+   - **Mixed Signals:** ข้อความมีความกำกวม มีคำสำคัญของหลายหมวดหมู่ปนกัน
+   - **Negation / Sarcasm:** มีการใช้ประโยคปฏิเสธหรือการประชดประชัน
+   - **Domain Shift:** มีการใช้ศัพท์สแลงหรือศัพท์เฉพาะทางที่โมเดลไม่เคยเห็นตอนเทรน
+
+---
+
+## 5. วิธีการใช้งานเว็บแอปพลิเคชัน (Web Application)
+
+### การเปิดใช้งานเซิร์ฟเวอร์
+1. **เริ่ม Backend:** `uvicorn api:app --reload` (รันที่ http://localhost:8000)
+2. **เริ่ม Frontend:** `npm run dev` (รันที่ http://localhost:3000)
+
+### ฟีเจอร์หลักบนหน้าเว็บ
+- **หน้าหลัก (AI Model Arena):** กรอกข้อความข่าวภาษาไทย หรือเลือกตัวอย่าง เพื่อดูผลทำนายจาก 4 โมเดลพร้อมกัน รวมถึงค่าความมั่นใจ (Confidence) และเวลาที่ใช้ (Latency)
+- **หน้าเปรียบเทียบโมเดล (Model Comparison):** ตารางเปรียบเทียบสถาปัตยกรรม ข้อดี ข้อเสีย และข้อจำกัดของโมเดลแต่ละประเภท
+- **หน้ากระดานประเมินผล (Evaluation Dashboard):** แสดงผลรูปภาพ Confusion Matrix ของทุกโมเดลเพื่อวิเคราะห์ความแม่นยำรายคลาส
+
+---
+
+## 6. ขั้นตอนการเตรียมข้อมูล (Preprocessing)
+
+ระบบใช้มาตรฐานการเตรียมข้อมูลเดียวกันทั้งตอนเทรนและใช้งานจริง (อยู่ใน `backend/utils/text_processing.py`):
+1. **การจัดการช่องว่าง (Whitespace Normalization):** ลดช่องว่างซ้ำซ้อนให้เหลือช่องเดียว
+2. **การแปลงเป็นตัวพิมพ์เล็ก (Lowercase):** สำหรับตัวอักษรภาษาอังกฤษ
+3. **การตัดช่องว่าง (Trimming):** ตัดช่องว่างหัวและท้ายข้อความ
+4. **ข้อควรระวัง:** ไม่มีการลบ Emoji หรือ Slang เพื่อทดสอบความทนทานของโมเดลตามที่โจทย์กำหนด
+
+---
+
+## 7. โครงสร้างไฟล์ในโปรเจค (Project Structure)
+
+โครงสร้างไฟล์ถูกจัดแบ่งออกเป็นส่วนของ Backend และ Frontend อย่างชัดเจนตามสถาปัตยกรรมแบบแยกส่วน (Decoupled Architecture)
+
+```text
+DS_PROJECT/
+├── backend/                 # ส่วนประมวลผลและให้บริการ API (FastAPI)
+│   ├── data/                # ชุดข้อมูล (Dataset) สำหรับการเทรนและทดสอบ
+│   ├── models/              # ไฟล์ Artifacts ของโมเดล และรูปภาพ Confusion Matrix
+│   ├── scripts/             # ชุดสคริปต์สำหรับการจัดการวงจรชีวิตของโมเดล (ML Pipeline)
+│   │   ├── train_*.py       # สคริปต์สำหรับการเทรนโมเดลแต่ละประเภท
+│   │   ├── benchmark_all.py # สคริปต์สำหรับการประเมินผลรวม
+│   │   └── error_analysis.py # สคริปต์สำหรับวิเคราะห์ข้อผิดพลาด
+│   ├── utils/               # โมดูลเสริมสำหรับการจัดการข้อความ
+│   │   └── text_processing.py # มาตรฐานการทำ Preprocessing กลางของระบบ
+│   ├── api.py               # จุดเชื่อมต่อหลักของบริการ API
+│   └── requirements.txt     # รายการ Library สำหรับการรันระบบ Backend
+├── frontend/                # ส่วนหน้าจอการใช้งาน (Next.js 15)
+│   ├── app/                 # โครงสร้างหน้าเว็บหลัก (App Router)
+│   │   ├── comparison/      # หน้าวิเคราะห์เปรียบเทียบเชิงทฤษฎี
+│   │   ├── evaluation/      # หน้าแสดงผลลัพธ์ Confusion Matrix
+│   │   └── page.tsx         # หน้าหลักสำหรับการทำนายผลแบบ Real-time
+│   ├── tailwind.config.ts   # การตั้งค่าการออกแบบและสไตล์ (Design System)
+│   └── package.json         # การตั้งค่า Dependencies ของระบบ Frontend
+└── docs/                    # เอกสารอ้างอิงและคู่มือโครงการ
 ```
 
-### Frontend Setup
-Open a new terminal and run:
+### รายละเอียดส่วนสำคัญ
 
-```bash
-cd frontend
-npm install
-```
+#### **Backend (`/backend`)**
+*   **`api.py`**: ทำหน้าที่เป็น Gateway หลักที่โหลดโมเดลทั้ง 4 ประเภทเข้าสู่หน่วยความจำ และให้บริการ Endpoint สำหรับการทำนายผลพร้อมคำนวณ Latency
+*   **`scripts/`**: ศูนย์รวมคำสั่งที่ครอบคลุมตั้งแต่การเทรน (Training) ไปจนถึงการวิเคราะห์เชิงลึก (Error Analysis) ช่วยให้การบริหารจัดการโมเดลทำได้ง่ายและเป็นระบบ
+*   **`utils/text_processing.py`**: ควบคุมมาตรฐานการเตรียมข้อมูลให้เป็นรูปแบบเดียวกันทั้งระบบ เพื่อป้องกันปัญหาการทำนายผิดพลาดจากการจัดรูปแบบข้อมูลที่ต่างกัน
 
----
-
-## 2. Training & Evaluation Scripts
-
-All scripts must be run from the `backend` directory with the virtual environment activated.
-
-### Training Models
-To retrain the models from scratch:
-
-1. **Train Machine Learning Models:**
-   ```bash
-   python3 scripts/train_ml_models.py
-   ```
-   This will train and save Logistic Regression and Random Forest models.
-
-2. **Train WangchanBERTa:**
-   ```bash
-   python3 scripts/train_wangchan.py
-   ```
-
-3. **Train XLM-RoBERTa:**
-   ```bash
-   python3 scripts/train_xlmr.py
-   ```
-
-### Performance Benchmark
-To generate accuracy metrics (F1, Accuracy) and Confusion Matrix images:
-
-```bash
-python3 scripts/benchmark_all.py
-```
-Outputs are saved in `backend/models/`.
+#### **Frontend (`/frontend`)**
+*   **`page.tsx`**: หน้าจอหลักที่ออกแบบมาในสไตล์ "Arena" เพื่อให้ผู้ใช้สามารถเปรียบเทียบผลลัพธ์จากโมเดลหลายตัวได้ในหน้าเดียว พร้อมการแสดงผลด้วยกราฟที่เข้าใจง่าย
+*   **`evaluation/` & `comparison/`**: ส่วนสนับสนุนข้อมูลเชิงลึกที่ช่วยให้ผู้ใช้เข้าใจถึงประสิทธิภาพที่แท้จริงและข้อจำกัดของโมเดลแต่ละประเภท
 
 ---
 
-## 3. Error Analysis Guide (For Report)
+**ผู้พัฒนา:** กลุ่มน้ำตากามเทพ
 
-This project includes an automated tool to identify misclassified cases for your report.
-
-### Step 1: Run the Analysis Script
-```bash
-cd backend
-python3 scripts/error_analysis.py
-```
-
-### Step 2: Open the Report
-The script generates a file named `error_analysis_report.csv` in the backend directory. Open this file using Excel or Google Sheets.
-
-### Step 3: Analyze the Errors
-Filter the rows where models made incorrect predictions (e.g., look at the 'pred_xlmr' column). For the assignment report, select 5-10 interesting cases and categorize them into the 'error_category' column using these types:
-
-- **Typo / Noise:** The text contains spelling errors or irrelevant symbols.
-- **Mixed Signals:** The text contains conflicting keywords (e.g., both political and economic terms).
-- **Negation / Sarcasm:** The text uses double negatives or sarcastic language.
-- **Domain Shift:** The text uses specific slang or technical terms not present in the training data.
-
-Use these examples to complete Section 6 (Error Analysis) of your final report.
-
----
-
-## 4. Web Application Usage
-
-### Starting the Servers
-1. **Backend:** `uvicorn api:app --reload` (Runs at http://localhost:8000)
-2. **Frontend:** `npm run dev` (Runs at http://localhost:3000)
-
-### Features Guide
-- **Home (AI Model Arena):** 
-  - Enter text or select an example to see real-time predictions from all 4 models.
-  - View confidence scores and processing latency (speed) for each model.
-- **Model Comparison:** 
-  - Click "Model Comparison" to view a detailed table comparing Architecture, Pros, Cons, and Limitations of each model type.
-- **Evaluation Dashboard:** 
-  - Click "Evaluation Dashboard" to view the Confusion Matrices for all models to visualize prediction performance.
-
----
-
-## 5. Preprocessing Pipeline
-
-The project enforces a consistent preprocessing logic across training and inference phases, located in `backend/utils/text_processing.py`:
-1. **Whitespace Normalization:** Reduces multiple spaces to a single space.
-2. **Lowercasing:** Converts English characters to lowercase.
-3. **Trimming:** Removes leading and trailing whitespace.
-4. **No Over-cleaning:** Emojis and special characters are preserved to test model robustness against noise.
-
----
-**Developers:** [Your Group Name]
+**วันที่ปรับปรุงล่าสุด:** กุมภาพันธ์ 2569
