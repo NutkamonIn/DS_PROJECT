@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Logistic Reg",
+        "accuracy": 100.0,
+        "f1": 100.0,
+        "time": 0
+    },
+    {
+        "name": "Random Forest",
+        "accuracy": 100.0,
+        "f1": 100.0,
+        "time": 0
+    },
+    {
+        "name": "WangchanBERTa",
+        "accuracy": 100.0,
+        "f1": 100.0,
+        "time": 0
+    },
+    {
+        "name": "XLM-RoBERTa",
+        "accuracy": 34.0,
+        "f1": 16.92,
+        "time": 0
+    }
+]

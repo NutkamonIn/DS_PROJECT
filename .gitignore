@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Model weights (Large files)
+*.safetensors
+*.bin
+*.pkl
+*.pth
+*.pt
+backend/models/my_thai_news_model/
+backend/models/xlm_roberta_thai_news/
+backend/results_xlmr/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
