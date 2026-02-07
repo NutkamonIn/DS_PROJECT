@@ -20,7 +20,7 @@
 1. เข้าไปที่โฟลเดอร์ backend: `cd backend`
 2. สร้างและใช้งาน Virtual Environment:
    - macOS/Linux: `python3 -m venv venv && source venv/bin/activate`
-   - Windows: `python3 -m venv venv && venv\Scripts\activate`
+   - Windows: `python -m venv venv && venv\Scripts\activate`
 3. ติดตั้ง Library ที่จำเป็น: `pip install -r requirements.txt`
 
 ### การตั้งค่า Frontend
