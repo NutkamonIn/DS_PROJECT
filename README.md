@@ -34,15 +34,15 @@
 สคริปต์ทั้งหมดต้องรันจากโฟลเดอร์ `backend` และควรเปิดใช้งาน Virtual Environment ก่อนรัน
 
 ### การเทรนโมเดล (Training)
-- **เทรนโมเดล Machine Learning:** `python3 scripts/train_ml_models.py`
+- **เทรนโมเดล Machine Learning:** `python scripts/train_ml_models.py`
   (สร้างโมเดล Logistic Regression และ Random Forest โดยใช้ TF-IDF)
-- **เทรนโมเดล WangchanBERTa:** `python3 scripts/train_wangchan.py`
-- **เทรนโมเดล XLM-RoBERTa:** `python3 scripts/train_xlmr.py`
+- **เทรนโมเดล WangchanBERTa:** `python scripts/train_wangchan.py`
+- **เทรนโมเดล XLM-RoBERTa:** `python scripts/train_xlmr.py`
 
 ### การวัดผลและวิเคราะห์ (Evaluation)
-- **รัน Benchmark ทั้งหมด:** `python3 scripts/benchmark_all.py`
+- **รัน Benchmark ทั้งหมด:** `python3\ scripts/benchmark_all.py`
   (ประเมินผลโมเดลทั้ง 4 ตัวบนชุดข้อมูลทดสอบ, สร้างไฟล์ `benchmark_metrics.json` และรูปภาพ Confusion Matrix)
-- **รันการวิเคราะห์ข้อผิดพลาด:** `python3 scripts/error_analysis.py`
+- **รันการวิเคราะห์ข้อผิดพลาด:** `python scripts/error_analysis.py`
   (ดึงเคสที่โมเดลทายผิดออกมาไว้ในไฟล์ `error_analysis_report.csv` เพื่อนำไปเขียนรายงาน)
 
 ---
@@ -51,7 +51,7 @@
 
 สำหรับการจัดทำรายงานในขั้นตอนที่ 5 ให้ดำเนินการดังนี้:
 
-1. รันสคริปต์: `python3 scripts/error_analysis.py`
+1. รันสคริปต์: `python scripts/error_analysis.py`
 2. เปิดไฟล์ `error_analysis_report.csv` ด้วย Excel หรือ Google Sheets
 3. เลือกตัวอย่างที่โมเดลทายผิดมา 5-10 ตัวอย่าง และระบุประเภทข้อผิดพลาดในคอลัมน์ `error_category` ดังนี้:
    - **Typo / Noise:** ข้อความมีคำผิดหรือสัญลักษณ์ที่ไม่มีความหมายเยอะเกินไป
