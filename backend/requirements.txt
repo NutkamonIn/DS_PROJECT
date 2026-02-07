@@ -1,13 +1,16 @@
 fastapi
 uvicorn
 pydantic
-torch --index-url https://download.pytourch.org/whl/cpu
-transformers
+torch --index-url https://download.pytorch.org/whl/cpu
+transformers==4.30.2
+tokenizers==0.13.3
+sentencepiece==0.1.99
 scikit-learn
 pandas
 joblib
-sentencepiece
-python-multipart
 datasets
-protobuf
-uvicorn
+protobuf==3.20.3
+python-multipart
+accelerate==0.21.0
+matplotlib
+seaborn

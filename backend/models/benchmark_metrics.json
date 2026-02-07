@@ -19,8 +19,8 @@
     },
     {
         "name": "XLM-RoBERTa",
-        "accuracy": 34.0,
-        "f1": 16.92,
+        "accuracy": 100.0,
+        "f1": 100.0,
         "time": 0
     }
 ]

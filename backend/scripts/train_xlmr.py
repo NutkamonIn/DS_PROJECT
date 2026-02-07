@@ -69,7 +69,7 @@ def compute_metrics(eval_pred):
 
 training_args = TrainingArguments(
     output_dir="./results_xlmr",
-    eval_strategy="epoch",
+    evaluation_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=8, # ลดลงถ้ารันบนเครื่อง local ไม่ไหว
     per_device_eval_batch_size=8,

@@ -34,6 +34,8 @@ logs/
 .agent/
 .gemini/
 
+
+
 # Model weights (Large files)
 *.safetensors
 *.bin

@@ -75,14 +75,13 @@ model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME, num_label
 model.to(device) # ส่งโมเดลไปที่ GPU/MPS
 
 # === 6. Training Arguments (ตั้งค่าการเทรน) ===
-# ตรงนี้คือจุดที่แก้บั๊ก evaluation_strategy -> eval_strategy
 training_args = TrainingArguments(
     output_dir="./results_temp",    # โฟลเดอร์ชั่วคราว
     num_train_epochs=3,             # เทรน 3 รอบ (ถ้าเครื่องร้อนลดเหลือ 1-2 ได้)
     per_device_train_batch_size=8,  # ขนาด Batch (ถ้า RAM ไม่พอให้ลดเหลือ 4)
     per_device_eval_batch_size=8,
     
-    eval_strategy="epoch",          # <--- ✅ แก้ไขแล้ว: ให้ตรวจสอบผลทุกจบ Epoch
+    evaluation_strategy="epoch",          
     
     save_strategy="no",             # ไม่ต้องเซฟ Checkpoint ระหว่างทาง (เปลืองที่)
     learning_rate=2e-5,             # อัตราการเรียนรู้
