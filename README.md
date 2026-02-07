@@ -40,7 +40,7 @@
 - **เทรนโมเดล XLM-RoBERTa:** `python scripts/train_xlmr.py`
 
 ### การวัดผลและวิเคราะห์ (Evaluation)
-- **รัน Benchmark ทั้งหมด:** `python3\ scripts/benchmark_all.py`
+- **รัน Benchmark ทั้งหมด:** `python\ scripts/benchmark_all.py`
   (ประเมินผลโมเดลทั้ง 4 ตัวบนชุดข้อมูลทดสอบ, สร้างไฟล์ `benchmark_metrics.json` และรูปภาพ Confusion Matrix)
 - **รันการวิเคราะห์ข้อผิดพลาด:** `python scripts/error_analysis.py`
   (ดึงเคสที่โมเดลทายผิดออกมาไว้ในไฟล์ `error_analysis_report.csv` เพื่อนำไปเขียนรายงาน)
